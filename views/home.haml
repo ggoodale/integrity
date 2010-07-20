@@ -16,5 +16,9 @@
             Building!
           - when :blank
             Never built yet
+          %span{ :class => 'commit_id' }&= project.last_build.commit.short_identifier
+          %span{ :class => 'committer' }&= ' by ' + project.last_build.commit.author.name
+          .results
+            &= project.builds.last.output.split("\n")[-1]
   %p#new
     %a{ :href => path("new") } Add a new project
